@@ -7,10 +7,16 @@ import {OAuthModule} from 'angular-oauth2-oidc';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import { OpeningComponent } from './opening/opening.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    OpeningComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
