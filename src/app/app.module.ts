@@ -10,13 +10,15 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import { OpeningComponent } from './opening/opening.component';
 import { AuthComponent } from './auth/auth.component';
+import { WorkbenchComponent } from './workbench/workbench.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     OpeningComponent,
-    AuthComponent
+    AuthComponent,
+    WorkbenchComponent
   ],
   imports: [
     BrowserModule,
