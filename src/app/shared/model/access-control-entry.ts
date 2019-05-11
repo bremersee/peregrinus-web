@@ -1,4 +1,4 @@
-export class AccessControlEntry {
+export interface AccessControlEntry {
   permission: string;
   guest: boolean;
   users: string[];

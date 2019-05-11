@@ -4,7 +4,8 @@ import {NodeSettings} from './node-settings';
 export {AccessControlList} from './access-control-list';
 export {NodeSettings} from './node-settings';
 
-export abstract class Node {
+export interface Node {
+  _type: string;
   id: string;
   created: Date;
   createdBy: string;

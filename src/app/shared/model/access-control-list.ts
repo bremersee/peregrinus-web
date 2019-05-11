@@ -1,7 +1,7 @@
 import {AccessControlEntry} from './access-control-entry';
 export {AccessControlEntry} from './access-control-entry';
 
-export class AccessControlList {
+export interface AccessControlList {
   owner: string;
   entries: AccessControlEntry[];
 }

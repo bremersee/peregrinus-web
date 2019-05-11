@@ -2,6 +2,6 @@ import {LeafSettings} from './leaf-settings';
 
 export {LeafSettings} from './leaf-settings';
 
-export class FeatureLeafSettings extends LeafSettings {
+export interface FeatureLeafSettings extends LeafSettings {
   displayedOnMap: boolean;
 }
