@@ -15,7 +15,15 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    this.oauthService.initImplicitFlow();
+    this.oauthService.initImplicitFlow('http://www.myurl.com/x/y/z');
+    /*
+    this.oauthService.tryLogin({
+      onTokenReceived: (info) => {
+        console.debug('state', info.state);
+      }
+    });
+     */
+    // https://openid.dev.bremersee.org/auth/realms/omnia/protocol/openid-connect/auth?response_type=id_token%20token&client_id=omnia&state=FqtvAChlAX71bq7JeEUrbyUhlyztTPA7c6cffQFq%3Bhttp%3A%2F%2Fwww.myurl.com%2Fx%2Fy%2Fz&redirect_uri=http%3A%2F%2Flocalhost%3A4200&scope=openid%20profile%20email&nonce=FqtvAChlAX71bq7JeEUrbyUhlyztTPA7c6cffQFq
   }
 
   logout() {

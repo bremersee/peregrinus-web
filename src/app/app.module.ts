@@ -27,7 +27,12 @@ import {WorkbenchComponent} from './workbench/workbench.component';
     FontAwesomeModule,
     AppRoutingModule,
     HttpClientModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['https://api.dev.bremersee.org'],
+        sendAccessToken: true
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
