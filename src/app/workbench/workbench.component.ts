@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TreeService} from '../shared/service/tree.service';
+import {Branch} from '../shared/model/branch';
 
 @Component({
   selector: 'app-workbench',
@@ -7,11 +8,15 @@ import {TreeService} from '../shared/service/tree.service';
   styleUrls: ['./workbench.component.css']
 })
 export class WorkbenchComponent implements OnInit {
+  branches: Branch[];
 
-  constructor(private treeService: TreeService) { }
+  constructor(private treeService: TreeService) {
+  }
 
   ngOnInit() {
-    this.treeService.loadBranches().subscribe((branches) => console.warn('Branches: ', branches));
+    this.treeService
+    .loadBranches()
+    .subscribe(branches => this.branches = branches);
   }
 
 }
