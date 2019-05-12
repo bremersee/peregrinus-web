@@ -12,6 +12,7 @@ import {HeaderComponent} from './header/header.component';
 import {AuthComponent} from './auth/auth.component';
 import {OpeningComponent} from './opening/opening.component';
 import {WorkbenchComponent} from './workbench/workbench.component';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {WorkbenchComponent} from './workbench/workbench.component';
         allowedUrls: ['https://api.dev.bremersee.org'],
         sendAccessToken: true
       }
-    })
+    }),
+    LeafletModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

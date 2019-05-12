@@ -1,3 +1,9 @@
 <p>
   workbench works!
 </p>
+<div class="map"
+     leaflet
+     (leafletMapReady)="onMapReady($event)"
+     [leafletOptions]="options"
+     [leafletLayersControl]="layersControl">
+</div>
