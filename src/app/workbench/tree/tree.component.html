@@ -1,0 +1,30 @@
+<!--suppress TypeScriptUnresolvedVariable -->
+<ul class="tree">
+  <li *ngFor="let node of treeNodes">
+    <fa-icon *ngIf="'branch' === node._type && !node.settings.open"
+             [icon]="faFolder"
+             (click)="openNode(node)">
+    </fa-icon>
+    <fa-icon *ngIf="'branch' === node._type && node.settings.open"
+             [icon]="faFolderOpen"
+             (click)="closeNode(node)">
+    </fa-icon>
+    <!-- <span *ngIf="'branch' === node._type" class="caret"></span> -->
+    <span>{{ node.name }}</span>
+    <span *ngIf="'branch' === node._type" ngbDropdown>
+        <fa-icon [icon]="faBars" ngbDropdownToggle>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem>Branch Action</button>
+          </div>
+        </fa-icon>
+      </span>
+    <span *ngIf="'feature-leaf' === node._type" ngbDropdown>
+        <fa-icon [icon]="faBars" ngbDropdownToggle>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem>Feature Leaf Action</button>
+          </div>
+        </fa-icon>
+      </span>
+    <app-tree *ngIf="'branch' === node._type" [branches]="node.children"></app-tree>
+  </li>
+</ul>

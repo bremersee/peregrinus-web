@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {OpeningComponent} from './opening/opening.component';
 import {WorkbenchComponent} from './workbench/workbench.component';
 import {AuthGuardService} from './shared/security/auth-guard.service';
+import {OpeningGuardService} from './shared/security/opening-guard.service';
 
 const routes: Routes = [
   {path: 'workbench', component: WorkbenchComponent, canActivate: [AuthGuardService]},

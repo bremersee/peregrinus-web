@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {OAuthService} from 'angular-oauth2-oidc';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthGuardService implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/opening']);
+    //this.router.navigate(['/opening']);
     return false;
   }
 

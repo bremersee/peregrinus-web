@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {OAuthService, JwksValidationHandler, AuthConfig, OAuthErrorEvent} from 'angular-oauth2-oidc';
+import {Router} from '@angular/router';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://openid.dev.bremersee.org/auth/realms/omnia',
-  redirectUri: window.location.origin + '/index.html',
+  redirectUri: window.location.origin,
   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
   clientId: 'omnia',
   scope: 'openid profile email'
@@ -17,7 +18,7 @@ export const authConfig: AuthConfig = {
 export class AppComponent {
   title = 'peregrinus-web';
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, private router: Router) {
     oauthService.configure(authConfig);
     oauthService.tokenValidationHandler = new JwksValidationHandler();
     oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
@@ -30,6 +31,7 @@ export class AppComponent {
     .then(() => oauthService.tryLogin({
       onTokenReceived: (info) => {
         console.warn('state', info.state);
+        //router.navigate(['/workbench']);
       }
     }))
 
