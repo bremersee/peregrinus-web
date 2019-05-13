@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {OAuthService, JwksValidationHandler, AuthConfig, OAuthErrorEvent} from 'angular-oauth2-oidc';
+import {Component} from '@angular/core';
+import {AuthConfig, JwksValidationHandler, OAuthErrorEvent, OAuthService} from 'angular-oauth2-oidc';
 import {Router} from '@angular/router';
 
 export const authConfig: AuthConfig = {
@@ -24,34 +24,32 @@ export class AppComponent {
     oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
 
     // Load Discovery Document and then try to login the user
-    //this.oauthService.loadDiscoveryDocumentAndTryLogin();
     oauthService.loadDiscoveryDocument()
-
     // See if the hash fragment contains tokens (when user got redirected back)
     .then(() => oauthService.tryLogin({
       onTokenReceived: (info) => {
-        console.warn('state', info.state);
-        router.navigate(['/workbench']);
+        console.warn('path: |' +  info.state + '|');
+        if (info.state && info.state.trim() !== '') {
+          const path = info.state.trim();
+          if (info.state.trim().startsWith('/')) {
+            router.navigate(['' + path]);
+          } else {
+            router.navigate(['/' + path]);
+          }
+        } else {
+          router.navigate(['/workbench']);
+        }
       },
       onLoginError: (anyObj) => {
-        console.warn('response', anyObj);
+        console.error('response: ', anyObj);
       }
     }))
-
     // If we're still not logged in yet, try with a silent refresh:
     .then(() => {
       if (!oauthService.hasValidAccessToken()) {
         return oauthService.silentRefresh();
       }
-    })
-
-    // Get username, if possible.
-    //.then(() => {
-    //  if (oauthService.getIdentityClaims()) {
-    //    this.username = oauthService.getIdentityClaims()['name'];
-    //  }
-    //})
-    ;
+    });
 
     oauthService.setupAutomaticSilentRefresh();
   }

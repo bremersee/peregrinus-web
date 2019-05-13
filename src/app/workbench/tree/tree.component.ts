@@ -16,11 +16,14 @@ import {faShoePrints} from '@fortawesome/free-solid-svg-icons/faShoePrints';
 })
 export class TreeComponent implements OnInit {
 
-  @Input('branches')
+  @Input('treeNodes')
   treeNodes: Node[];
 
   @Input()
   treeLevel = 0;
+
+  @Input()
+  treeTab = 1.5;
 
   faBars = faBars;
   faFolder = faFolder;
@@ -36,7 +39,7 @@ export class TreeComponent implements OnInit {
   }
 
   paddingLeft() {
-    const value = 0.55 + (this.treeLevel * 1.5);
+    const value = 0.55 + (this.treeLevel * this.treeTab);
     return value + 'rem';
   }
 

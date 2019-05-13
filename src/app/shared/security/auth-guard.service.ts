@@ -23,6 +23,7 @@ export class AuthGuardService implements CanActivate {
     }
 
     //this.router.navigate(['/opening']);
+    // TODO can I start init flow here?
     return false;
   }
 

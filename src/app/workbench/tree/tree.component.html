@@ -17,7 +17,7 @@
       </div>
     </div>
     <app-tree *ngIf="'branch' === node._type"
-              [branches]="node.children"
+              [treeNodes]="node.children"
               [treeLevel]="treeLevel + 1">
     </app-tree>
   </div>
