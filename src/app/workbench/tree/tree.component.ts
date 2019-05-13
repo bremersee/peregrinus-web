@@ -3,6 +3,11 @@ import {Node} from '../../shared/model/node';
 import {faFolder} from '@fortawesome/free-regular-svg-icons/faFolder';
 import {faFolderOpen} from '@fortawesome/free-regular-svg-icons/faFolderOpen';
 import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
+import {Branch} from '../../shared/model/branch';
+import {BranchSettings} from '../../shared/model/branch-settings';
+import {faMapMarker} from '@fortawesome/free-solid-svg-icons/faMapMarker';
+import {faRoute} from '@fortawesome/free-solid-svg-icons/faRoute';
+import {faShoePrints} from '@fortawesome/free-solid-svg-icons/faShoePrints';
 
 @Component({
   selector: 'app-tree',
@@ -14,9 +19,15 @@ export class TreeComponent implements OnInit {
   @Input('branches')
   treeNodes: Node[];
 
+  @Input()
+  treeLevel = 0;
+
   faBars = faBars;
   faFolder = faFolder;
   faFolderOpen = faFolderOpen;
+  faMapMarker = faMapMarker;
+  faRoute = faRoute;
+  faTrack = faShoePrints;
 
   constructor() {
   }
@@ -24,12 +35,22 @@ export class TreeComponent implements OnInit {
   ngOnInit() {
   }
 
+  paddingLeft() {
+    const value = 0.55 + (this.treeLevel * 1.5);
+    return value + 'rem';
+  }
+
+  branchIcon(node: Node) {
+    const settings = node.settings as BranchSettings;
+    return settings.open ? this.faFolderOpen : this.faFolder;
+  }
+
   openNode(node: Node): void {
     console.warn('Open node ' + node.id);
   }
 
-  closeNode(node: Node): void {
-    console.warn('Close node ' + node.id);
+  closeNode(node: number): void {
+    console.warn('Close node ' + node);
   }
 
 }

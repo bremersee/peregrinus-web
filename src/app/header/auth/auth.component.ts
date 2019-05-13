@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    this.oauthService.initImplicitFlow('http://www.myurl.com/x/y/z');
+    this.oauthService.initImplicitFlow('/workbench');
     /*
     this.oauthService.tryLogin({
       onTokenReceived: (info) => {

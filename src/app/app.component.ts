@@ -31,7 +31,10 @@ export class AppComponent {
     .then(() => oauthService.tryLogin({
       onTokenReceived: (info) => {
         console.warn('state', info.state);
-        //router.navigate(['/workbench']);
+        router.navigate(['/workbench']);
+      },
+      onLoginError: (anyObj) => {
+        console.warn('response', anyObj);
       }
     }))
 

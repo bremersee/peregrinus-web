@@ -1,30 +1,24 @@
 <!--suppress TypeScriptUnresolvedVariable -->
-<ul class="tree">
-  <li *ngFor="let node of treeNodes">
-    <fa-icon *ngIf="'branch' === node._type && !node.settings.open"
-             [icon]="faFolder"
-             (click)="openNode(node)">
-    </fa-icon>
-    <fa-icon *ngIf="'branch' === node._type && node.settings.open"
-             [icon]="faFolderOpen"
-             (click)="closeNode(node)">
-    </fa-icon>
-    <!-- <span *ngIf="'branch' === node._type" class="caret"></span> -->
-    <span>{{ node.name }}</span>
-    <span *ngIf="'branch' === node._type" ngbDropdown>
-        <fa-icon [icon]="faBars" ngbDropdownToggle>
-          <div ngbDropdownMenu>
-            <button ngbDropdownItem>Branch Action</button>
-          </div>
+<div>
+  <div *ngFor="let node of treeNodes; let i = index">
+    <div class="tree-node" [draggable]="treeLevel != 0">
+      <div class="tree-node-body" [style.padding-left]="paddingLeft()">
+        <fa-icon *ngIf="'branch' === node._type"
+                 class="tree-node-icon"
+                 [icon]="branchIcon(node)"
+                 (click)="openNode(node)">
         </fa-icon>
-      </span>
-    <span *ngIf="'feature-leaf' === node._type" ngbDropdown>
-        <fa-icon [icon]="faBars" ngbDropdownToggle>
+        <span ngbDropdown>
+        <span ngbDropdownToggle>{{ node.name }}</span>
           <div ngbDropdownMenu>
-            <button ngbDropdownItem>Feature Leaf Action</button>
+            <button ngbDropdownItem>Rename</button>
           </div>
-        </fa-icon>
-      </span>
-    <app-tree *ngIf="'branch' === node._type" [branches]="node.children"></app-tree>
-  </li>
-</ul>
+        </span>
+      </div>
+    </div>
+    <app-tree *ngIf="'branch' === node._type"
+              [branches]="node.children"
+              [treeLevel]="treeLevel + 1">
+    </app-tree>
+  </div>
+</div>

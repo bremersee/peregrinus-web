@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -26,10 +28,12 @@ import { TreeComponent } from './workbench/tree/tree.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule,
-    FontAwesomeModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    NgbModule,
+    FontAwesomeModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['https://api.dev.bremersee.org'],
