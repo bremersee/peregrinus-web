@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {OAuthService} from 'angular-oauth2-oidc';
 import {AuthService} from '../../shared/security/auth.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
-    // this.oauthService.initImplicitFlow('/basecamp');
     this.oauthService.login('/basecamp');
   }
 
