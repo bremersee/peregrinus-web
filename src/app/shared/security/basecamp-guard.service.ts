@@ -15,7 +15,7 @@ export class BasecampGuardService implements CanActivate {
     if (this.oauthService.isLoggedIn()) {
       return true;
     }
-    this.router.navigate(['/opening']);
+    this.router.navigate(['/basecamp-redirect']);
     return false;
   }
 

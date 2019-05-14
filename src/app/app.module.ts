@@ -16,6 +16,7 @@ import {AuthComponent} from './header/auth/auth.component';
 import {OpeningComponent} from './opening/opening.component';
 import {BasecampComponent} from './basecamp/basecamp.component';
 import {TreeComponent} from './basecamp/tree/tree.component';
+import { BasecampRedirectComponent } from './basecamp-redirect/basecamp-redirect.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {TreeComponent} from './basecamp/tree/tree.component';
     AuthComponent,
     OpeningComponent,
     BasecampComponent,
-    TreeComponent
+    TreeComponent,
+    BasecampRedirectComponent
   ],
   imports: [
     BrowserModule,
