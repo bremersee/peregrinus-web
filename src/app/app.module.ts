@@ -15,7 +15,7 @@ import {HeaderComponent} from './header/header.component';
 import {AuthComponent} from './header/auth/auth.component';
 import {OpeningComponent} from './opening/opening.component';
 import {BasecampComponent} from './basecamp/basecamp.component';
-import { TreeComponent } from './basecamp/tree/tree.component';
+import {TreeComponent} from './basecamp/tree/tree.component';
 
 @NgModule({
   declarations: [
