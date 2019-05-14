@@ -16,4 +16,24 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.oauthService.hasValidAccessToken();
   }
+
+  logout() {
+    this.oauthService.logOut();
+  }
+
+  get userId() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['sub'];
+  }
+
+  get preferredUserName() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['preferred_username'];
+  }
 }

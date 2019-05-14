@@ -14,8 +14,8 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {AuthComponent} from './header/auth/auth.component';
 import {OpeningComponent} from './opening/opening.component';
-import {WorkbenchComponent} from './workbench/workbench.component';
-import { TreeComponent } from './workbench/tree/tree.component';
+import {BasecampComponent} from './basecamp/basecamp.component';
+import { TreeComponent } from './basecamp/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { TreeComponent } from './workbench/tree/tree.component';
     HeaderComponent,
     AuthComponent,
     OpeningComponent,
-    WorkbenchComponent,
+    BasecampComponent,
     TreeComponent
   ],
   imports: [

@@ -13,7 +13,7 @@ export class OpeningGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
     if (this.oauthService.hasValidIdToken()) {
-      //this.router.navigate(['/workbench']);
+      //this.router.navigate(['/basecamp']);
       return false;
     }
     return true;

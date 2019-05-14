@@ -6,11 +6,11 @@ import {Feature} from '../shared/model/feature';
 import {FeatureLeaf} from '../shared/model/feature-leaf';
 
 @Component({
-  selector: 'app-workbench',
-  templateUrl: './workbench.component.html',
-  styleUrls: ['./workbench.component.css']
+  selector: 'app-basecamp',
+  templateUrl: './basecamp.component.html',
+  styleUrls: ['./basecamp.component.css']
 })
-export class WorkbenchComponent implements OnInit {
+export class BasecampComponent implements OnInit {
   branches: Branch[];
   //layers: Layer[];
 

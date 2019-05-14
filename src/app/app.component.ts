@@ -37,7 +37,7 @@ export class AppComponent {
             router.navigate(['/' + path]);
           }
         } else {
-          router.navigate(['/workbench']);
+          router.navigate(['/basecamp']);
         }
       },
       onLoginError: (anyObj) => {
