@@ -1,23 +1,55 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Branch} from '../model/branch';
 import {catchError, retry} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {Node} from '../model/node';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TreeService {
-  baseUrl = 'https://api.dev.bremersee.org/peregrinus/api/protected/tree';
+  private baseUrl = environment.peregrinusBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   loadBranches() {
-    const url = `${this.baseUrl}/`;
+    const url = this.baseUrl + '/api/protected/tree/';
     return this.http.get<Branch[]>(url)
     .pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.handleError) // then handle the error
+    );
+  }
+
+  openBranch(node: Node) {
+    const url = this.baseUrl + '/api/protected/tree/' + node.id + '/open';
+    return this.http.get<Branch>(url)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  }
+
+  closeBranch(node: Node) {
+    const url = this.baseUrl + '/api/protected/tree/' + node.id + '/close';
+    return this.http.put(url, '')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+  }
+
+  displayNodeOnMap(node: Node, displayedOnMap: boolean) {
+    const displayedOnMapStr = displayedOnMap ? 'true' : 'false';
+    console.warn('Switch displayed on map to', displayedOnMapStr)
+    const url = this.baseUrl + '/api/protected/tree/' + node.id + '/display-on-map/' + displayedOnMapStr;
+    return this.http.put(url, '')
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
     );
   }
 

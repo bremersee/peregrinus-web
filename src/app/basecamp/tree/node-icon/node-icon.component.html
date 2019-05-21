@@ -1,0 +1,17 @@
+<span [ngSwitch]="nodeType">
+  <fa-icon *ngSwitchCase="'branch'"
+           class="tree-node-icon"
+           [icon]="branchIcon()"
+           (click)="switchOpenState()">
+  </fa-icon>
+  <fa-icon *ngSwitchCase="'feature'"
+           class="tree-node-icon"
+           [style.color]="featureIconStyle()"
+           [icon]="featureIcon()"
+           (click)="switchDisplayedOnMapState()">
+  </fa-icon>
+  <fa-icon *ngSwitchDefault
+           class="tree-node-icon"
+           [icon]="defaultIcon">
+  </fa-icon>
+</span>

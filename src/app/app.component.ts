@@ -24,7 +24,7 @@ export class AppComponent {
     oauthService.events.subscribe(e => {
       if (e instanceof OAuthErrorEvent) {
         const path = this.router.url;
-        if ('/basecamp-redirect' === path) {
+        if (path.startsWith('/basecamp-redirect')) {
           this.oauthService.initImplicitFlow('/basecamp');
         } else {
           console.error(e);

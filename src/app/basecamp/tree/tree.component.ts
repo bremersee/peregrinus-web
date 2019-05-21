@@ -8,6 +8,7 @@ import {BranchSettings} from '../../shared/model/branch-settings';
 import {faMapMarker} from '@fortawesome/free-solid-svg-icons/faMapMarker';
 import {faRoute} from '@fortawesome/free-solid-svg-icons/faRoute';
 import {faShoePrints} from '@fortawesome/free-solid-svg-icons/faShoePrints';
+import {TreeService} from '../../shared/service/tree.service';
 
 @Component({
   selector: 'app-tree',
@@ -32,7 +33,7 @@ export class TreeComponent implements OnInit {
   faRoute = faRoute;
   faTrack = faShoePrints;
 
-  constructor() {
+  constructor(private treeService: TreeService) {
   }
 
   ngOnInit() {
@@ -48,12 +49,31 @@ export class TreeComponent implements OnInit {
     return settings.open ? this.faFolderOpen : this.faFolder;
   }
 
-  openNode(node: Node): void {
-    console.warn('Open node ' + node.id);
+  switchOpenState(node: Node) {
+    console.warn('Switch open state of branch' + node.id);
+    const branch = node as Branch;
+    const settings = node.settings as BranchSettings;
+    if (settings.open) {
+      this.closeBranch(branch);
+    } else {
+      this.openBranch(branch);
+    }
   }
 
-  closeNode(node: number): void {
-    console.warn('Close node ' + node);
+  closeBranch(branch: Branch) {
+    this.treeService.closeBranch(branch)
+    .subscribe(() => {
+      const settings = branch.settings as BranchSettings;
+      settings.open = false;
+    });
+  }
+
+  openBranch(branch: Branch) {
+    this.treeService.openBranch(branch)
+    .subscribe(openBranch => {
+      branch.children = openBranch.children;
+      branch.settings = openBranch.settings;
+    });
   }
 
 }

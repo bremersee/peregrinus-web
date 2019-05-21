@@ -6,7 +6,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {OAuthModule} from 'angular-oauth2-oidc';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';import {OAuthModule} from 'angular-oauth2-oidc';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -17,6 +19,7 @@ import {OpeningComponent} from './opening/opening.component';
 import {BasecampComponent} from './basecamp/basecamp.component';
 import {TreeComponent} from './basecamp/tree/tree.component';
 import { BasecampRedirectComponent } from './basecamp-redirect/basecamp-redirect.component';
+import { NodeIconComponent } from './basecamp/tree/node-icon/node-icon.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { BasecampRedirectComponent } from './basecamp-redirect/basecamp-redirect
     OpeningComponent,
     BasecampComponent,
     TreeComponent,
-    BasecampRedirectComponent
+    BasecampRedirectComponent,
+    NodeIconComponent
   ],
   imports: [
     BrowserModule,
@@ -48,4 +52,9 @@ import { BasecampRedirectComponent } from './basecamp-redirect/basecamp-redirect
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor() {
+    library.add(fas, far);
+  }
+
 }

@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {icon, latLng, Map, marker, point, polyline, tileLayer, geoJSON, Layer} from 'leaflet';
 import {TreeService} from '../shared/service/tree.service';
+import {Node} from '../shared/model/node';
 import {Branch} from '../shared/model/branch';
 import {Feature} from '../shared/model/feature';
 import {FeatureLeaf} from '../shared/model/feature-leaf';
+import {BranchSettings} from '../shared/model/branch-settings';
 
 @Component({
   selector: 'app-basecamp',
