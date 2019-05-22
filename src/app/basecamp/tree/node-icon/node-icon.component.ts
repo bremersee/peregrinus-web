@@ -11,6 +11,8 @@ import {FeatureLeafSettings} from '../../../shared/model/feature-leaf-settings';
 import {faQuestion} from '@fortawesome/free-solid-svg-icons/faQuestion';
 import {FeatureLeaf} from '../../../shared/model/feature-leaf';
 import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
+import {FeatureUtils} from '../../../shared/model/feature-utils';
+import {NodeUtils} from '../../../shared/model/node-utils';
 
 @Component({
   selector: 'app-node-icon',
@@ -31,10 +33,9 @@ export class NodeIconComponent implements OnInit {
 
   ngOnInit() {
     this.nodeType = null;
-    const nt = this.node._type;
-    if ('branch' === nt) {
+    if (NodeUtils.isBranch(this.node)) {
       this.nodeType = 'branch';
-    } else if ('feature-leaf' === nt) {
+    } else if (NodeUtils.isFeatureLeaf(this.node)) {
       this.nodeType = 'feature';
     }
     if (this.nodeType == null) {
@@ -49,12 +50,11 @@ export class NodeIconComponent implements OnInit {
 
   featureIcon() {
     const featureLeaf = this.node as FeatureLeaf;
-    const featureType = featureLeaf.feature.properties._type;
-    if ('Rte' === featureType) {
+    if (FeatureUtils.isRte(featureLeaf.feature)) {
       return faRoute;
-    } else if ('Trk' === featureType) {
+    } else if (FeatureUtils.isTrk(featureLeaf.feature)) {
       return faShoePrints;
-    } else if ('Wpt' === featureType) {
+    } else if (FeatureUtils.isWpt(featureLeaf.feature)) {
       return faMapMarkerAlt;
     } else {
       return this.defaultIcon;
@@ -64,11 +64,6 @@ export class NodeIconComponent implements OnInit {
   featureIconStyle() {
     const settings = this.node.settings as FeatureLeafSettings;
     return settings.displayedOnMap ? 'darkgrey' : 'lightgrey';
-  }
-
-  featureDisplayedOnMap() {
-    const settings = this.node.settings as FeatureLeafSettings;
-    return settings.displayedOnMap;
   }
 
   switchOpenState() {
