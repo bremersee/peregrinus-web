@@ -45,12 +45,15 @@ export class NodeMenuComponent implements OnInit {
 
   displayOnMap() {
     const settings = this.node.settings as FeatureLeafSettings;
-    const newDisplayedOnMapValue = true;
-    this.treeService.displayNodeOnMap(this.node, newDisplayedOnMapValue)
-    .subscribe(() => {
-      settings.displayedOnMap = newDisplayedOnMapValue;
+    if (settings.displayedOnMap) {
       this.basecampBus.sendDisplayOnMap(this.node);
-    });
+    } else {
+      this.treeService.displayNodeOnMap(this.node, true)
+      .subscribe(() => {
+        settings.displayedOnMap = true;
+        this.basecampBus.sendDisplayOnMap(this.node);
+      });
+    }
   }
 
 }

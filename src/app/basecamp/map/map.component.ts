@@ -31,6 +31,8 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   treeNodes: Node[];
 
+  private layerMap = new Map<string, Layer>();
+
   osm = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     detectRetina: false,
     attribution: '© OpenStreetMap contributors'
@@ -71,6 +73,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.displayStateSubscription.unsubscribe();
+    this.displayOnMapSubscription.unsubscribe();
   }
 
   onMapReady(map: LeafletMap) {
@@ -144,17 +147,17 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
   private processFeatureLeaf(featureLeaf: FeatureLeaf): void {
     const featureLeafSettings = featureLeaf.settings as FeatureLeafSettings;
     if (featureLeafSettings.displayedOnMap) {
-      if (featureLeaf._layer) {
-        featureLeaf._layer.remove();
+      let layer: Layer;
+      if (this.layerMap.has(featureLeaf.id)) {
+        layer = this.layerMap.get(featureLeaf.id);
+      } else {
+        layer = this.createLayer(featureLeaf);
+        this.layerMap.set(featureLeaf.id, layer);
       }
-      featureLeaf._layer = this.createLayer(featureLeaf);
-      this.extendBounds(featureLeaf._layer);
-      featureLeaf._layer.addTo(this.map);
-    } else {
-      if (featureLeaf._layer) {
-        featureLeaf._layer.remove();
-      }
-      featureLeaf._layer = undefined;
+      this.extendBounds(layer);
+      layer.addTo(this.map);
+    } else if (this.layerMap.has(featureLeaf.id)) {
+      this.layerMap.get(featureLeaf.id).remove();
     }
   }
 
