@@ -20,6 +20,8 @@ import {BasecampComponent} from './basecamp/basecamp.component';
 import {TreeComponent} from './basecamp/tree/tree.component';
 import { BasecampRedirectComponent } from './basecamp-redirect/basecamp-redirect.component';
 import { NodeIconComponent } from './basecamp/tree/node-icon/node-icon.component';
+import { MapComponent } from './basecamp/map/map.component';
+import { NodeMenuComponent } from './basecamp/tree/node-menu/node-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NodeIconComponent } from './basecamp/tree/node-icon/node-icon.component
     BasecampComponent,
     TreeComponent,
     BasecampRedirectComponent,
-    NodeIconComponent
+    NodeIconComponent,
+    MapComponent,
+    NodeMenuComponent
   ],
   imports: [
     BrowserModule,

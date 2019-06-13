@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Branch} from '../model/branch';
 import {catchError, retry} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Node} from '../model/node';
 import {environment} from '../../../environments/environment';
 
@@ -15,7 +15,7 @@ export class TreeService {
   constructor(private http: HttpClient) {
   }
 
-  loadBranches() {
+  loadBranches(): Observable<Branch[]> {
     const url = this.baseUrl + '/api/protected/tree/';
     return this.http.get<Branch[]>(url)
     .pipe(

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Node} from '../../shared/model/node';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.css']
@@ -9,7 +9,7 @@ import {Node} from '../../shared/model/node';
 export class TreeComponent implements OnInit {
 
   @Input('treeNodes')
-  treeNodes: Node[];
+  treeNodes;
 
   @Input()
   treeLevel = 0;

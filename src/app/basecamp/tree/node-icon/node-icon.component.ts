@@ -13,6 +13,7 @@ import {FeatureLeaf} from '../../../shared/model/feature-leaf';
 import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import {FeatureUtils} from '../../../shared/model/feature-utils';
 import {NodeUtils} from '../../../shared/model/node-utils';
+import {BasecampBusService} from '../../../shared/service/basecamp-bus.service';
 
 @Component({
   selector: 'app-node-icon',
@@ -28,7 +29,7 @@ export class NodeIconComponent implements OnInit {
 
   defaultIcon = faQuestion;
 
-  constructor(private treeService: TreeService) {
+  constructor(private treeService: TreeService, private basecampBus: BasecampBusService) {
   }
 
   ngOnInit() {
@@ -82,6 +83,7 @@ export class NodeIconComponent implements OnInit {
     this.treeService.displayNodeOnMap(this.node, newDisplayedOnMapValue)
     .subscribe(() => {
       settings.displayedOnMap = newDisplayedOnMapValue;
+      this.basecampBus.sendNewDisplayOnMapState(this.node);
     });
   }
 

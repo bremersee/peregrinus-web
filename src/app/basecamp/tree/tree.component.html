@@ -4,12 +4,7 @@
     <div class="tree-node" [draggable]="treeLevel != 0">
       <div class="tree-node-body" [style.padding-left]="paddingLeft()">
         <app-node-icon [node]="node"></app-node-icon>
-        <span ngbDropdown>
-        <span ngbDropdownToggle>{{ node.name }}</span>
-          <div ngbDropdownMenu>
-            <button ngbDropdownItem>Rename</button>
-          </div>
-        </span>
+        <app-node-menu [node]="node"></app-node-menu>
       </div>
     </div>
     <app-tree *ngIf="'branch' === node._type && node.settings.open"
