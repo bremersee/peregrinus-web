@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RippleModule} from 'primeng/ripple';
 import {ButtonModule} from 'primeng/button';
 import {MenuModule} from 'primeng/menu';
+import {TreeModule} from 'primeng/tree';
 
 const keycloakService = new KeycloakService();
 
@@ -38,7 +39,8 @@ const keycloakService = new KeycloakService();
     MenuModule,
     MenubarModule,
     RippleModule,
-    ButtonModule
+    ButtonModule,
+    TreeModule
   ],
   providers: [
     {
