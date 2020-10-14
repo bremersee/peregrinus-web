@@ -1,14 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-// "keycloak-angular": "^8.0.1",
-//  "keycloak-js": "^11.0.2",
 
 export const environment = {
   production: false,
-  keycloakConfigLocation: '/assets/keycloak.json',
-  keycloakLogoutLocation: '',
-  silentCheckSsoLocation: '/silent-check-sso.html',
+  keycloakConfigLocation: '/home/assets/keycloak-dev.json',
+  keycloakLogoutLocation: '/home',
+  silentCheckSsoLocation: '/home/silent-check-sso.html',
   linkmanBaseUrl: 'https://api.dev.bremersee.org/linkman',
   adminRoles: ['ADMIN', 'LINK_ADMIN'],
 };

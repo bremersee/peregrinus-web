@@ -1,0 +1,17 @@
+<button *ngIf="!isLoggedIn"
+        pButton
+        pRipple
+        type="button"
+        label="Sign in"
+        class="p-button-outlined"
+        (click)="login()">
+</button>
+
+<button *ngIf="isLoggedIn"
+        type="button"
+        pButton
+        icon="pi pi-bars"
+        label="{{username}}"
+        (click)="menu.toggle($event)">
+</button>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
